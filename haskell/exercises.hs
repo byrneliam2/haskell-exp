@@ -1,0 +1,1 @@
+-- Exercises as suggested in lectures
