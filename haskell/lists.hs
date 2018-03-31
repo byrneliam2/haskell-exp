@@ -1,6 +1,6 @@
 -- Experimenting with list functions
-list1 = head [1, 2, 3]
-list2 = tail [1, 2, 3]
+list1 = head [1, 2, 3] == 1
+list2 = tail [1, 2, 3] == [2, 3]
 
 -- Trying out head:tail pattern
 list3 (x:xs) = x
