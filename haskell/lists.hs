@@ -32,3 +32,7 @@ lsum1 l = let lsum1' [] s = s
 lsum2 l = lsum2' l 0
           where lsum2' [] s = s
                 lsum2' (x:xs) s = lsum2' xs (x+s)
+
+-- List comprehensions
+listc1 = [x*x | x <- [1..25], x `mod` 3 == 0]
+listc2 = [(x, y) | x <- [1..3], y <- [1..3]]
