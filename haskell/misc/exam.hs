@@ -36,4 +36,17 @@ sumCosts :: BinTreeC a c -> Int
 sumCosts EmptyC = 0
 sumCosts (NodeC n c l r) = c + (sumCosts l + sumCosts r)
 
-sumCosts_t1 = sumCosts $ NodeC 'a' 0 (Node 'a' 1 EmptyC EmptyC) (Node 'a' 4 EmptyC EmptyC)
+sumCosts_t1 = sumCosts $ NodeC 'a' 0 (NodeC 'a' 1 EmptyC EmptyC) (NodeC 'a' 4 EmptyC EmptyC)
+
+-- 3.
+data Op = And | Or | Not | Implies
+data BExp = Var Char | Op Op [BExp]
+
+-- 3. a)
+checkExp :: BExp -> Bool
+checkExp (Var _) = True
+checkExp (Op And l) = length l >= 2 && all (\x -> checkExp x) l
+checkExp (Op Or l) = length l >= 2 && all (\x -> checkExp x) l
+checkExp (Op Not [e]) = checkExp e
+checkExp (Op Implies [e1, e2]) = checkExp e1 && checkExp e2
+checkExp _ = error "Error!"

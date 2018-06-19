@@ -1,0 +1,1 @@
+ghci haskell/misc/exam.hs
