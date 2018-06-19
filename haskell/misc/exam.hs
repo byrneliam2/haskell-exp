@@ -50,3 +50,14 @@ checkExp (Op Or l) = length l >= 2 && all (\x -> checkExp x) l
 checkExp (Op Not [e]) = checkExp e
 checkExp (Op Implies [e1, e2]) = checkExp e1 && checkExp e2
 checkExp _ = error "Error!"
+
+-- ================================== 2015 ===================================
+
+-- 1. b) ii.
+compress :: Eq a => [a] -> [a]
+compress xs = compress' xs []
+compress' [] l = l
+compress' [x] l = l ++ [x] 
+compress' (x:xs) l | x == y = compress' ys $ l ++ [y]
+                   | otherwise = compress' xs $ l ++ [x]
+                     where (y:ys) = xs
