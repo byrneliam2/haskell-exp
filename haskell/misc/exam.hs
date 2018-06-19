@@ -39,17 +39,36 @@ sumCosts (NodeC n c l r) = c + (sumCosts l + sumCosts r)
 sumCosts_t1 = sumCosts $ NodeC 'a' 0 (NodeC 'a' 1 EmptyC EmptyC) (NodeC 'a' 4 EmptyC EmptyC)
 
 -- 3.
+type Var = Char
+type Store = [(Var, Bool)]
+
 data Op = And | Or | Not | Implies
-data BExp = Var Char | Op Op [BExp]
+data BExp = Const Bool | Var Var | Op Op [BExp]
 
 -- 3. a)
 checkExp :: BExp -> Bool
+checkExp (Const _) = True
 checkExp (Var _) = True
 checkExp (Op And l) = length l >= 2 && all (\x -> checkExp x) l
 checkExp (Op Or l) = length l >= 2 && all (\x -> checkExp x) l
 checkExp (Op Not [e]) = checkExp e
 checkExp (Op Implies [e1, e2]) = checkExp e1 && checkExp e2
 checkExp _ = error "Error!"
+
+-- 3. b)
+eval :: Store -> BExp -> Bool
+eval _ (Const b) = b
+eval s (Var x) = find x s
+eval s (Op op exps) = apply op $ map (\x -> eval s x) exps
+
+apply :: Op -> [Bool] -> Bool
+apply Not [v] = not v
+apply Implies [v1, v2] = (not v1) || v2
+apply And bs = and bs
+apply Or bs = or bs
+
+find :: Var -> Store -> Bool
+find x s = head [v | (u, v) <- s, u == x]
 
 -- ================================== 2015 ===================================
 
