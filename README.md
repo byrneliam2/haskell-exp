@@ -1,2 +1,2 @@
-# haskell-exp
-A repository for me to practise functional programming and document my learning as I study COMP 304 (Programming Languages) at Victoria University of Wellington. The languages used here include Haskell and Frege (Haskell for the JVM.)
+# paradigm-shift
+A repository for me to practise functional and logic programming using Haskell and Prolog, and to document my learning as I study COMP 304 (Programming Languages) at Victoria University of Wellington.
