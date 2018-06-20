@@ -70,6 +70,26 @@ apply Or bs = or bs
 find :: Var -> Store -> Bool
 find x s = head [v | (u, v) <- s, u == x]
 
+-- ================================== 2016 ===================================
+
+-- 1. a) and b)
+count :: Eq a => a -> [a] -> Int
+count _ [] = 0
+count n (x:xs) | n == x = 1 + count n xs
+               | otherwise = count n xs
+
+-- 1. c)
+count2 :: Eq a => a -> [a] -> Int
+count2 x l = length [n | n <- l, n == x]
+
+-- 1. d)
+count3 :: Eq a => a -> [a] -> Int
+count3 x l = length [i | (i, n) <- zip [0..] l, n == x]
+
+-- 1. f)
+count4 :: Eq a => a -> [a] -> Int
+count4 x l = foldr (\x y -> if x then y + 1 else y) 0 $ map (== x) l
+
 -- ================================== 2015 ===================================
 
 -- 1. b) ii.
