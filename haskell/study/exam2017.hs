@@ -29,14 +29,20 @@ height_t1 = height (Node 8 (Node 3 (Node 1 Empty Empty) (Node 6 (Node 4 Empty
             (Node 14 (Node 13 Empty Empty) Empty)))
 
 -- 2. c)
-data BinTreeC a c = NodeC a Int (BinTreeC a Int) (BinTreeC a Int) | EmptyC
+-- data BinTreeC a c = NodeC a Int (BinTreeC a Int) (BinTreeC a Int) | EmptyC
+data BinTreeC a = NodeC a (BinTreeC a, Int) (BinTreeC a, Int) | EmptyC
 
 -- 2. d)
-sumCosts :: BinTreeC a c -> Int
+-- sumCosts :: BinTreeC a c -> Int
+-- sumCosts EmptyC = 0
+-- sumCosts (NodeC n c l r) = c + (sumCosts l + sumCosts r)
+sumCosts :: BinTreeC a -> Int
 sumCosts EmptyC = 0
-sumCosts (NodeC n c l r) = c + (sumCosts l + sumCosts r)
+sumCosts (NodeC n (l, cl) (r, cr)) = cl + cr + (sumCosts l + sumCosts r)
 
-sumCosts_t1 = sumCosts $ NodeC 'a' 0 (NodeC 'a' 1 EmptyC EmptyC) (NodeC 'a' 4 EmptyC EmptyC)
+-- sumCosts_t1 = sumCosts $ NodeC 'a' 0 (NodeC 'a' 1 EmptyC EmptyC) (NodeC 'a' 4 EmptyC EmptyC)
+sumCosts_t1 = sumCosts $ NodeC 'a' ((NodeC 'a' (EmptyC, 0) (EmptyC, 0)), 3) 
+    ((NodeC 'a' (EmptyC, 0) (EmptyC, 0)), 4)
 
 -- 3.
 type Var = Char

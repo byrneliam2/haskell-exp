@@ -27,6 +27,7 @@ findLeaves (Node _ t) = sum $ map findLeaves t
 
 -- 2. b)
 data Tree2 a c = Node2 a Int [Tree2 a Int] | Leaf2 a Int
+-- data Tree2 a = Node2 a [(Tree2 a, Int)] | Leaf2 a
 
 -- 2. c)
 leastCost :: Tree2 a c -> ([a], Int)
