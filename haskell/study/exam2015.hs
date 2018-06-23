@@ -6,14 +6,21 @@ zip' _ [] = []
 zip' [] _ = []
 zip' (x:xs) (y:ys) = (x, y):(zip' xs ys) 
 
--- 1. b) ii.
+-- 1. b) ii. (doesn't work)
 compress :: Eq a => [a] -> [a]
 compress xs = compress' xs []
+-- compress' [] l = l
+-- compress' [x] l = l ++ [x] 
+-- compress' (x:xs) l | x == y = compress' ys $ l ++ [y]
+--                    | otherwise = compress' xs $ l ++ [x]
+--                      where (y:ys) = xs
+
+-- 1. b) ii. (works, from group study doc)
+compress' :: Eq a => [a] -> [a] -> [a]
 compress' [] l = l
-compress' [x] l = l ++ [x] 
-compress' (x:xs) l | x == y = compress' ys $ l ++ [y]
-                   | otherwise = compress' xs $ l ++ [x]
-                     where (y:ys) = xs
+compress' [x] l = l ++ [x]
+compress' (x1:x2:xs) l | x1 == x2  = compress' (x2:xs) l
+                       | otherwise = compress' (x2:xs) (l ++ [x1])
 
 -- 1. c)
 filter' :: (a -> Bool) -> [a] -> [a]
@@ -28,7 +35,7 @@ samePos xs ys = [n1 | (m1, n1) <- zip [0..] xs, (m2, n2) <- zip [0..] ys,
 
 -- 2.
 data BinTree a = Leaf a | Bin a (BinTree a) (BinTree a)
-    deriving Show
+     deriving Show
 
 -- 2. a)
 fringe :: BinTree a -> [a]
