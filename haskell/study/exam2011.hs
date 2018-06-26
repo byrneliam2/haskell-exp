@@ -34,6 +34,7 @@ adjacent x y w h | w < 1 || h < 1 = error "negative dimensions"
 
 -- 3. b)
 data Tree a = Node a [Tree a] | Leaf a
+
 leaves :: Tree a -> Int
 leaves (Leaf _) = 1
 leaves (Node _ t) = foldl (+) 0 $ map leaves t
