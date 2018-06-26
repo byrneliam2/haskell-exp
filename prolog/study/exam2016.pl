@@ -32,4 +32,4 @@ force(X) :- agency(Y), controls(Y, X).
 hasControlOver(X, Y) :- controls(X, Y) ; controls(X, Z), controls(Z, Y).
 
 % 6. c)
-limitedControl(X) :- not(agency(X)), not(X == government).
+limitedControl(X) :- not(force(X)), not(X == government).
