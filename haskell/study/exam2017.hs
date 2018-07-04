@@ -42,7 +42,7 @@ sumCosts (NodeC n (l, cl) (r, cr)) = cl + cr + (sumCosts l + sumCosts r)
 
 -- sumCosts_t1 = sumCosts $ NodeC 'a' 0 (NodeC 'a' 1 EmptyC EmptyC) (NodeC 'a' 4 EmptyC EmptyC)
 sumCosts_t1 = sumCosts $ NodeC 'a' ((NodeC 'a' (EmptyC, 0) (EmptyC, 0)), 3) 
-    ((NodeC 'a' (EmptyC, 0) (EmptyC, 0)), 4)
+  ((NodeC 'a' (EmptyC, 0) (EmptyC, 0)), 4)
 
 -- 3.
 type Var = Char

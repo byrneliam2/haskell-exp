@@ -14,5 +14,5 @@ fibb x | x < 2 = 1
 
 -- Fibonacci with accumulators
 fiba x = fiba' x 0
-         where fiba' 2 f = 1
-               fiba' x f = fiba' (x-1) + fiba' (x-2) 
+  where fiba' 2 f = 1
+        fiba' x f = fiba' (x-1) + fiba' (x-2) 

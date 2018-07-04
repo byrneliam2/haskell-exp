@@ -10,9 +10,9 @@ add b x = x:b
 -- 2. c)
 del :: Eq a => Bag a -> a -> Bag a
 del b x = del' b x []
-    where del' [] _ n = n
-          del' (b:bs) x n | b == x = n ++ bs
-                          | otherwise = del' bs x $ n ++ [b]
+  where del' [] _ n = n
+        del' (b:bs) x n | b == x = n ++ bs
+                        | otherwise = del' bs x $ n ++ [b]
 
 -- 2. d)
 union :: Bag a -> Bag a -> Bag a

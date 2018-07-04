@@ -11,5 +11,5 @@ accept(Sentence) :- startState(State), pathToFinal(State, Sentence).
 
 pathToFinal(State, []) :- finalState(State).
 pathToFinal(State0, [Event | SentenceRest]) :-
-    transition(State0, Event, State1),
-    pathToFinal(State1, SentenceRest).
+  transition(State0, Event, State1),
+  pathToFinal(State1, SentenceRest).

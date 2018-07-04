@@ -8,10 +8,10 @@ data PriorityQueue a = PriorityQueue [(a, Int)] | Empty
 enq :: a -> Int -> PriorityQueue a -> PriorityQueue a
 enq a p Empty = PriorityQueue [(a, p)]
 enq a p (PriorityQueue q) = PriorityQueue $ enq' a p q []
-    where enq' a p [] nq = nq
-          enq' a p ((q, qp):qs) nq | p == qp = nq ++ (q, qp):(a, p):qs
-                                   | p < qp = nq ++ (a, p):(q, qp):qs
-                                   | otherwise = enq' a p qs $ nq ++ [(q, qp)]
+  where enq' a p [] nq = nq
+        enq' a p ((q, qp):qs) nq | p == qp = nq ++ (q, qp):(a, p):qs
+                                 | p < qp = nq ++ (a, p):(q, qp):qs
+                                 | otherwise = enq' a p qs $ nq ++ [(q, qp)]
 
 -- 2. c)
 deq :: PriorityQueue a -> (a, PriorityQueue a)

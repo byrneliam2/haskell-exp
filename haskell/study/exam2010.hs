@@ -5,15 +5,15 @@ data Tree a = Node a [Tree a] | Leaf a
 
 height :: Tree a -> Int
 height t = height' t 0
-    where height' (Leaf _) x = x
-          height' (Node _ t) x = maximum $ map (\y -> height' y (x + 1)) t
+  where height' (Leaf _) x = x
+        height' (Node _ t) x = maximum $ map (\y -> height' y (x + 1)) t
 
 -- 5. c) i.
 filter1 :: (a -> Bool) -> [a] -> [a]
 filter1 f l = filter1' f l []
-    where filter1' f [] l = l
-          filter1' f (x:xs) l | f x = filter1' f xs $ l ++ [x]
-                              | otherwise = filter1' f xs l
+  where filter1' f [] l = l
+        filter1' f (x:xs) l | f x = filter1' f xs $ l ++ [x]
+                            | otherwise = filter1' f xs l
 
 -- Alternatively,
 filter1b :: (a -> Bool) -> [a] -> [a]

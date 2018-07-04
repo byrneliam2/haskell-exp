@@ -31,11 +31,11 @@ samePos :: Eq a => [a] -> [a] -> [a]
 samePos _ [] = []
 samePos [] _ = []
 samePos xs ys = [n1 | (m1, n1) <- zip [0..] xs, (m2, n2) <- zip [0..] ys, 
-    (m1, n1) == (m2, n2)]
+  (m1, n1) == (m2, n2)]
 
 -- 2.
 data BinTree a = Leaf a | Bin a (BinTree a) (BinTree a)
-     deriving Show
+  deriving Show
 
 -- 2. a)
 fringe :: BinTree a -> [a]
